@@ -27,9 +27,10 @@ describe 'vim::dotvim', :type => :define do
       }
 
       it { is_expected.to contain_file($user_home + "/.vimrc").with(
-          'ensure' => 'link',
-          'owner'  => $user,
-          'target' => $dotvim_path + "/vimrc",
+          'ensure'  => 'link',
+          'owner'   => $user,
+          'target'  => $dotvim_path + "/vimrc",
+          'require' => "Vcsrepo[" + $dotvim_path + "]",
         )
       }
     end
