@@ -15,8 +15,9 @@ define vim::dotvim (
   }
 
   file { "${user_home}/.vimrc":
-    ensure => link,
-    owner  => $user,
-    target => "${dotvim_path}/vimrc",
+    ensure  => link,
+    owner   => $user,
+    target  => "${dotvim_path}/vimrc",
+    require => Vcsrepo[$dotvim_path],
   }
 }
